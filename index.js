@@ -14,9 +14,9 @@ function replace(options) {
     finder.on('file', async function (file, stat) {
         const content = await fs.readFile(file);
         const result = options.handler({ file, content: content.toString() });
-        if(result.file){
-            fs.outputFile(path.join(options.outputDir,path.relative(options.inputDir,result.file)),result.content);
-        }        
+        if (result && result.file) {
+            fs.outputFile(path.join(options.outputDir, path.relative(options.inputDir, result.file)), result.content);
+        }
     });
 }
 
